@@ -1,0 +1,20 @@
+.card {
+  width: 280px;
+  height: 320px;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.cardImg {
+  width: 280px;
+  height: 200px;
+}
+
+.cardContent {
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

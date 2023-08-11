@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+:root {
+  --color-primary: rgba(101, 100, 100, 0.91);
+  --color-secondary: rgb(1, 1, 55);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-secondary);
+  background-image: url("countries.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
