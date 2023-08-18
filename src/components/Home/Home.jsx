@@ -118,6 +118,10 @@ const Home = () => {
     setPopulation(!population);
   };
 
+  const handleReset = () => {
+    dispatch(getAllCountries());
+  };
+
   return (
     <div className={style.home}>
       <div className={style.homeFilters}>
@@ -131,8 +135,6 @@ const Home = () => {
           <option value="Antarctic">Antartida</option>
         </select>
 
-
-        
         <select onChange={handleFilterByActivity} value={selectedActivity}>
           <option value="">Filtro p/Actividad</option>
           {activitiesAroundTheWorld.map((act, i) => (
@@ -151,9 +153,19 @@ const Home = () => {
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
         </select>
+        <button
+          style={{
+            backgroundColor: "white",
+            border: "thin solid black",
+            color: "black",
+          }}
+          onClick={handleReset}
+        >
+          Reset
+        </button>
       </div>
       <div className={style.homeNumber}>
-        {countriesToRender.length === pageSize && <p>Pagina {currentPage}</p>}
+        {countriesToRender.length === pageSize && <p>Pag {currentPage}</p>}
       </div>
       <div className={style.homePage}>
         <div>

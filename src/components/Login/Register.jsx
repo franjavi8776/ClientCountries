@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/actions";
 import style from "./Register.module.css";
 import validation from "./validation";
@@ -9,6 +9,8 @@ const Register = () => {
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
+
+  const userExists = useSelector((state) => state.userExists);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +26,7 @@ const Register = () => {
   return (
     <div className={style.register}>
       <h2>Register, if you don´t have an account</h2>
+      {userExists && <span style={{ color: "red" }}>Usuario ya existe</span>}
       <form onSubmit={handleSubmit}>
         <div>
           <input
@@ -49,7 +52,6 @@ const Register = () => {
             <span style={{ color: "red" }}>{errors.password}</span>
           ) : null}
         </div>
-
         <button type="submit">Register</button>
       </form>
     </div>

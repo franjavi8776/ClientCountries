@@ -11,6 +11,7 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   LOGOUT_USER,
+  USER_EXISTS,
 } from "./actions";
 
 const initialState = {
@@ -20,6 +21,8 @@ const initialState = {
   detail: {},
   activities: [],
   isAuthenticated: false,
+  user: null,
+  userExists: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -95,6 +98,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case USER_EXISTS:
+      return {
+        ...state,
+        userExists: true,
       };
     case LOGOUT_USER:
       return {

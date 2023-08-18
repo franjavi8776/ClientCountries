@@ -18,7 +18,7 @@ const Detail = () => {
       <div className={style.detailContainer}>
         <div className={style.detailImg}>
           <h1>{detail.name}</h1>
-          <img src={detail.flags?.svg} alt={detail.name} />
+          <img src={detail.flags?.png} alt={detail.name} />
         </div>
         <div className={style.detailContent}>
           <h2>DATOS</h2>

@@ -12,6 +12,7 @@ export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 export const LOGIN_USER = "LOGIN_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const USER_EXISTS = "USER_EXISTS";
 
 export const getAllCountries = () => async (dispatch) => {
   try {
@@ -40,6 +41,7 @@ export const searchCountryByName = (name) => async (dispatch) => {
     const endpoint = `http://localhost:3001/countries/name?name=${name}`;
     const response = await axios.get(endpoint);
     const data = response.data;
+
     dispatch({
       type: SEARCH_COUNTRY,
       payload: data,
@@ -104,7 +106,12 @@ export const registerUser = (userData) => async (dispatch) => {
     const endpoint = "http://localhost:3001/register";
     const response = await axios.post(endpoint, userData);
     const data = response.data;
-    dispatch({ type: REGISTER_USER, payload: data });
+
+    if (data.message === "Usuario ya existe") {
+      dispatch({ type: USER_EXISTS });
+    } else {
+      dispatch({ type: REGISTER_USER, payload: data });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -115,6 +122,7 @@ export const loginUser = (userData) => async (dispatch) => {
     const endpoint = "http://localhost:3001/login";
     const response = await axios.post(endpoint, userData);
     const data = response.data;
+
     if (data.access) {
       dispatch({ type: LOGIN_USER });
     }

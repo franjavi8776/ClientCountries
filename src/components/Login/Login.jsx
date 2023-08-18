@@ -7,11 +7,12 @@ import validation from "./validation";
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
+
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email: user.email, password: user.password }));
+    dispatch(loginUser(user));
   };
 
   const handleChange = (e) => {

@@ -15,6 +15,10 @@
   text-align: center;
   color: var(--color-secondary);
 }
+.detailImg img {
+  width: 800px;
+  height: 550px;
+}
 .detailContent {
   color: var(--color-secondary);
   margin: 0 20px;

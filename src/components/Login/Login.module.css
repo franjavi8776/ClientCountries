@@ -9,3 +9,7 @@
 .login button {
   margin-top: 5px;
 }
+
+.login button:active {
+  transform: scale(0.98);
+}

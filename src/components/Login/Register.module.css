@@ -10,3 +10,6 @@
 .register button {
   margin-top: 5px;
 }
+.register button:active {
+  transform: scale(0.98);
+}

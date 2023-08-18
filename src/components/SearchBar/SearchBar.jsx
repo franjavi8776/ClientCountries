@@ -38,7 +38,7 @@ const SearchBar = () => {
           onChange={handleChange}
           ref={inputRef}
         />
-        <button onClick={handleSearch}>Buscar</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
       <div>
         <button onClick={handleLogout}>Logout</button>
