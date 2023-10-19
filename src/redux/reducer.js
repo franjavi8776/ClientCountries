@@ -9,7 +9,6 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_POPULATION,
   LOGIN_USER,
-  REGISTER_USER,
   LOGOUT_USER,
   USER_EXISTS,
 } from "./actions";
@@ -21,7 +20,7 @@ const initialState = {
   detail: {},
   activities: [],
   isAuthenticated: false,
-  user: null,
+  token: localStorage.getItem("token") || null,
   userExists: false,
 };
 
@@ -90,14 +89,12 @@ const reducer = (state = initialState, action) => {
       };
     }
     case LOGIN_USER:
+      localStorage.setItem("token", action.payload);
       return {
         ...state,
         isAuthenticated: true,
-      };
-    case REGISTER_USER:
-      return {
-        ...state,
-        user: action.payload,
+        token: action.payload,
+        userExists: false,
       };
     case USER_EXISTS:
       return {
@@ -105,8 +102,10 @@ const reducer = (state = initialState, action) => {
         userExists: true,
       };
     case LOGOUT_USER:
+      localStorage.removeItem("token");
       return {
         ...state,
+        token: null,
         isAuthenticated: false,
       };
     default:

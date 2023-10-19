@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/actions";
 import style from "./Register.module.css";
 import validation from "./validation";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -10,12 +11,19 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const userExists = useSelector((state) => state.userExists);
+  console.log(userExists);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(user));
   };
+
+  if (userExists) {
+    navigate("/");
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,9 +33,7 @@ const Register = () => {
 
   return (
     <div className={style.register}>
-      <h2>Register, if you don´t have an account</h2>
-      {userExists && <span style={{ color: "red" }}>Usuario ya existe</span>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={style.form}>
         <div>
           <input
             type="text"
@@ -52,6 +58,7 @@ const Register = () => {
             <span style={{ color: "red" }}>{errors.password}</span>
           ) : null}
         </div>
+        {userExists && <span style={{ color: "red" }}>Usuario ya existe</span>}
         <button type="submit">Register</button>
       </form>
     </div>

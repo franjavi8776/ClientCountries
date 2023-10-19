@@ -7,7 +7,7 @@
 }
 .welcomeLogin {
   width: 450px;
-  height: 650px;
+  height: 600px;
   border-radius: 10px;
   background-color: var(--color-primary);
   color: var(--color-secondary);
@@ -21,4 +21,8 @@
   width: 250px;
   height: 200px;
   border-radius: 50%;
+}
+
+h3 {
+  color: var(--color-secondary);
 }

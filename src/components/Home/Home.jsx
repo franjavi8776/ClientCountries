@@ -118,9 +118,11 @@ const Home = () => {
     setPopulation(!population);
   };
 
-  const handleReset = () => {
-    dispatch(getAllCountries());
-  };
+  const pagesArray = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    pagesArray.push(i);
+  }
 
   return (
     <div className={style.home}>
@@ -153,28 +155,8 @@ const Home = () => {
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
         </select>
-        <button
-          style={{
-            backgroundColor: "white",
-            border: "thin solid black",
-            color: "black",
-          }}
-          onClick={handleReset}
-        >
-          Reset
-        </button>
-      </div>
-      <div className={style.homeNumber}>
-        {countriesToRender.length === pageSize && <p>Pag {currentPage}</p>}
       </div>
       <div className={style.homePage}>
-        <div>
-          {currentPage > 1 && (
-            <button className={style.btnL} onClick={handlePreviousPage}>
-              P
-            </button>
-          )}
-        </div>
         <div className={style.homeCards}>
           {countriesToRender.map(({ id, name, flags, continents }) => {
             return (
@@ -188,12 +170,35 @@ const Home = () => {
             );
           })}
         </div>
-        <div>
-          {currentPage < totalPages && (
-            <button className={style.btnR} onClick={handleNextPage}>
-              N
-            </button>
-          )}
+        <div className={style.pagination}>
+          <div>
+            {currentPage > 1 && (
+              <button className={style.btnL} onClick={handlePreviousPage}>
+                P
+              </button>
+            )}
+          </div>
+          <div>
+            {pagesArray.map((pageNumber) => (
+              <span
+                key={pageNumber}
+                onClick={() => setCurrentPage(pageNumber)}
+                className={`${
+                  pageNumber === currentPage ? style.active : style.desActive
+                }`}
+              >
+                {pageNumber}
+              </span>
+            ))}
+          </div>
+
+          <div>
+            {currentPage < totalPages && (
+              <button className={style.btnR} onClick={handleNextPage}>
+                N
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

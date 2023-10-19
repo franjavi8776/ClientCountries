@@ -1,18 +1,33 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/actions";
 import style from "./Login.module.css";
 import validation from "./validation";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
+  const token = useSelector((state) => state.token);
+  console.log(token);
+
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loginUser(user));
+  }, [dispatch, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser(user));
+
+    if (token) {
+      navigate("/home");
+    } else {
+      navigate("/register");
+    }
   };
 
   const handleChange = (e) => {

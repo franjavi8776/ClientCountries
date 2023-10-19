@@ -109,8 +109,6 @@ export const registerUser = (userData) => async (dispatch) => {
 
     if (data.message === "Usuario ya existe") {
       dispatch({ type: USER_EXISTS });
-    } else {
-      dispatch({ type: REGISTER_USER, payload: data });
     }
   } catch (error) {
     console.log(error);
@@ -124,7 +122,7 @@ export const loginUser = (userData) => async (dispatch) => {
     const data = response.data;
 
     if (data.access) {
-      dispatch({ type: LOGIN_USER });
+      dispatch({ type: LOGIN_USER, payload: data.token });
     }
   } catch (error) {
     console.log(error);
