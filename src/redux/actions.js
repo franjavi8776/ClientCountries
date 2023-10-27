@@ -16,7 +16,7 @@ export const USER_EXISTS = "USER_EXISTS";
 
 export const getAllCountries = () => async (dispatch) => {
   try {
-    const endpoint = `http://localhost:3001/countries`;
+    const endpoint = `https://server-countries.vercel.app/countries`;
     const response = await axios.get(endpoint);
     const data = response.data;
     dispatch({ type: GET_COUNTRIES, payload: data });
@@ -27,7 +27,7 @@ export const getAllCountries = () => async (dispatch) => {
 
 export const getCountryDetail = (id) => async (dispatch) => {
   try {
-    const endpoint = `http://localhost:3001/countries/${id}`;
+    const endpoint = `https://server-countries.vercel.app/countries/${id}`;
     const response = await axios.get(endpoint);
     const data = response.data;
     dispatch({ type: GET_DETAIL, payload: data });
@@ -38,7 +38,7 @@ export const getCountryDetail = (id) => async (dispatch) => {
 
 export const searchCountryByName = (name) => async (dispatch) => {
   try {
-    const endpoint = `http://localhost:3001/countries/name?name=${name}`;
+    const endpoint = `https://server-countries.vercel.app/countries/name?name=${name}`;
     const response = await axios.get(endpoint);
     const data = response.data;
 
@@ -53,7 +53,7 @@ export const searchCountryByName = (name) => async (dispatch) => {
 
 export const addActivity = (activity) => async (dispatch) => {
   try {
-    const endpoint = "http://localhost:3001/activities";
+    const endpoint = "https://server-countries.vercel.app/activities";
     const response = await axios.post(endpoint, activity);
     const data = response.data;
     dispatch({ type: ADD_ACTIVITY, payload: data });
@@ -64,7 +64,7 @@ export const addActivity = (activity) => async (dispatch) => {
 
 export const getActivities = () => async (dispatch) => {
   try {
-    const endpoint = "http://localhost:3001/activities";
+    const endpoint = "https://server-countries.vercel.app/activities";
     const response = await axios.get(endpoint);
     const data = response.data;
     dispatch({ type: GET_ACTIVITIES, payload: data });
@@ -103,7 +103,7 @@ export const orderByPopulation = (order) => {
 
 export const registerUser = (userData) => async (dispatch) => {
   try {
-    const endpoint = "http://localhost:3001/register";
+    const endpoint = "https://server-countries.vercel.app/register";
     const response = await axios.post(endpoint, userData);
     const data = response.data;
 
@@ -117,7 +117,7 @@ export const registerUser = (userData) => async (dispatch) => {
 
 export const loginUser = (userData) => async (dispatch) => {
   try {
-    const endpoint = "http://localhost:3001/login";
+    const endpoint = "https://server-countries.vercel.app/login";
     const response = await axios.post(endpoint, userData);
     const data = response.data;
 
